@@ -32,7 +32,7 @@ Provides: %{name}-static = %{version}-%{release}
 %install
 # Installing headers...
 mkdir -p "%{buildroot}%{_includedir}/%{name}"
-cp -a include/* %{buildroot}%{_includedir}/%{name}
+cp -a include/* "%{buildroot}%{_includedir}/%{name}"
 
 %files devel
 %doc README.md CREDITS.md TODO.md
