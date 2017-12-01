@@ -4,7 +4,7 @@
 %global date 20171112
 
 Name: range-v3
-Summary:  Experimental range library for C++11/14/17
+Summary: Experimental range library for C++11/14/17
 Version: 0.3.0
 Release: 1.%{date}git%{shortcommit0}%{?dist}
 
