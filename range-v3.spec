@@ -40,5 +40,5 @@ cp -a include/* "%{buildroot}%{_includedir}/%{name}"
 %{_includedir}/%{name}
 
 %changelog
-* Fri Dec 01 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 0-1.20171112git0b0dd88
+* Fri Dec 01 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3.0-1.20171112git0b0dd88
 - Initial SPEC release. 
