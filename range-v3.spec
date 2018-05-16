@@ -1,7 +1,7 @@
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
-Version: 0.3.5
-Release: 2%{?dist}
+Version: 0.3.6
+Release: 1%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
@@ -35,6 +35,9 @@ cp -a include/* "%{buildroot}%{_includedir}/%{name}"
 %{_includedir}/%{name}
 
 %changelog
+* Wed May 16 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3.6-1
+- Updated to version 0.3.6.
+
 * Thu Mar 08 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 0.3.5-2
 - Fixed bogus changelog entry.
 
