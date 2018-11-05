@@ -6,7 +6,11 @@ Release: 1%{?dist}
 License: Boost
 URL: https://github.com/ericniebler/%{name}
 Source0: %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildArch: noarch
+
+BuildRequires: ninja-build
+BuildRequires: gcc-c++
+BuildRequires: cmake
+BuildRequires: gcc
 
 %description
 Header-only %{summary}.
@@ -20,19 +24,31 @@ Provides: %{name}-static = %{version}-%{release}
 
 %prep
 %autosetup
+mkdir -p %{_target_platform}
+sed -i 's@lib/@%{_lib}/@g' CMakeLists.txt
+sed -i '/-Werror/d' cmake/ranges_flags.cmake
 
 %build
-# Nothing to build. Header-only library.
+pushd %{_target_platform}
+    %cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    ..
+popd
+%ninja_build -C %{_target_platform}
 
 %install
-# Installing headers...
-mkdir -p "%{buildroot}%{_includedir}/%{name}"
-cp -a include/* "%{buildroot}%{_includedir}/%{name}"
+%ninja_install -C %{_target_platform}
+
+%check
+pushd %{_target_platform}
+    ctest --output-on-failure
+popd
 
 %files devel
 %doc README.md CREDITS.md TODO.md
 %license LICENSE.txt
-%{_includedir}/%{name}
+%{_includedir}/{meta,range}
+%{_libdir}/cmake/%{name}
 
 %changelog
 * Mon Nov 05 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 0.4.0-1
