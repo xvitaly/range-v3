@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
 Version: 0.4.0
