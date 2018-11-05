@@ -1,7 +1,7 @@
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
-Version: 0.3.6
-Release: 2%{?dist}
+Version: 0.4.0
+Release: 1%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
@@ -35,6 +35,9 @@ cp -a include/* "%{buildroot}%{_includedir}/%{name}"
 %{_includedir}/%{name}
 
 %changelog
+* Mon Nov 05 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 0.4.0-1
+- Updated to version 0.4.0.
+
 * Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
