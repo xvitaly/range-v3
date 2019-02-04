@@ -3,7 +3,7 @@
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
 Version: 0.4.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
@@ -34,6 +34,10 @@ sed -i '/-Werror/d' cmake/ranges_flags.cmake
 pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
+%if 0%{?fedora} && 0%{?fedora} >= 30
+    -DRANGE_V3_TESTS=OFF \
+    -DRANGE_V3_EXAMPLES=OFF \
+%endif
     ..
 popd
 %ninja_build -C %{_target_platform}
@@ -53,6 +57,9 @@ popd
 %{_libdir}/cmake/%{name}
 
 %changelog
+* Mon Feb 04 2019 Vitaly Zaitsev <vitaly@easycoding.org> - 0.4.0-3
+- Fixed FTBFS on Fedora 30.
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
