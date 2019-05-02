@@ -2,8 +2,8 @@
 
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
-Version: 0.4.0
-Release: 3%{?dist}
+Version: 0.5.0
+Release: 1%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
@@ -57,6 +57,9 @@ popd
 %{_libdir}/cmake/%{name}
 
 %changelog
+* Thu May 02 2019 Vitaly Zaitsev <vitaly@easycoding.org> - 0.5.0-1
+- Updated to version 0.5.0.
+
 * Mon Feb 04 2019 Vitaly Zaitsev <vitaly@easycoding.org> - 0.4.0-3
 - Fixed FTBFS on Fedora 30.
 
