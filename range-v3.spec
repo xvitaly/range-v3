@@ -34,10 +34,8 @@ sed -i '/-Werror/d' cmake/ranges_flags.cmake
 pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-%if 0%{?fedora} && 0%{?fedora} >= 30
     -DRANGE_V3_TESTS=OFF \
     -DRANGE_V3_EXAMPLES=OFF \
-%endif
     ..
 popd
 %ninja_build -C %{_target_platform}
