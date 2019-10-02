@@ -10,6 +10,7 @@ URL: https://github.com/ericniebler/%{name}
 Source0: %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires: ninja-build
+BuildRequires: doxygen
 BuildRequires: gcc-c++
 BuildRequires: cmake
 BuildRequires: gcc
@@ -34,7 +35,8 @@ sed -i '/-Werror/d' cmake/ranges_flags.cmake
 pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DRANGE_V3_TESTS=OFF \
+    -DRANGE_V3_TESTS=ON \
+    -DRANGE_V3_DOCS=ON \
     -DRANGE_V3_EXAMPLES=OFF \
     ..
 popd
@@ -42,6 +44,7 @@ popd
 
 %install
 %ninja_install -C %{_target_platform}
+rm -f %{buildroot}%{_includedir}/module.modulemap
 
 %check
 pushd %{_target_platform}
@@ -51,7 +54,7 @@ popd
 %files devel
 %doc README.md CREDITS.md TODO.md
 %license LICENSE.txt
-%{_includedir}/{meta,range}
+%{_includedir}/{meta,range,concepts,std}
 %{_libdir}/cmake/%{name}
 
 %changelog
