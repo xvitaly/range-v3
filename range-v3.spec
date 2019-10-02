@@ -38,6 +38,7 @@ pushd %{_target_platform}
     -DRANGE_V3_TESTS=ON \
     -DRANGE_V3_DOCS=ON \
     -DRANGE_V3_EXAMPLES=OFF \
+    -DRANGES_MODULES=OFF \
     ..
 popd
 %ninja_build -C %{_target_platform}
