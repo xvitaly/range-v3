@@ -2,7 +2,7 @@
 
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
-Version: 0.9.1
+Version: 0.10.0
 Release: 1%{?dist}
 
 License: Boost
@@ -58,6 +58,9 @@ popd
 %{_libdir}/cmake/%{name}
 
 %changelog
+* Fri Jan 17 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.10.0-1
+- Updated to version 0.10.0.
+
 * Wed Oct 02 2019 Vitaly Zaitsev <vitaly@easycoding.org> - 0.9.1-1
 - Updated to version 0.9.1.
 
