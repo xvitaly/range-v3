@@ -1,9 +1,10 @@
+%undefine __cmake_in_source_build
 %global debug_package %{nil}
 
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
 Version: 0.10.0
-Release: 1%{?dist}
+Release: 3%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
@@ -26,30 +27,24 @@ Provides: %{name}-static = %{version}-%{release}
 
 %prep
 %autosetup
-mkdir -p %{_target_platform}
 sed -i 's@lib/@%{_lib}/@g' CMakeLists.txt
 sed -i '/-Werror/d' cmake/ranges_flags.cmake
 
 %build
-pushd %{_target_platform}
-    %cmake -G Ninja \
+%cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DRANGE_V3_TESTS=OFF \
     -DRANGE_V3_DOCS=OFF \
     -DRANGE_V3_EXAMPLES=OFF \
-    -DRANGES_MODULES=OFF \
-    ..
-popd
-%ninja_build -C %{_target_platform}
+    -DRANGES_MODULES=OFF
+%cmake_build
 
 %install
-%ninja_install -C %{_target_platform}
+%cmake_install
 rm -f %{buildroot}%{_includedir}/module.modulemap
 
 %check
-pushd %{_target_platform}
-    ctest --output-on-failure
-popd
+%ctest
 
 %files devel
 %doc README.md CREDITS.md TODO.md
@@ -58,6 +53,12 @@ popd
 %{_libdir}/cmake/%{name}
 
 %changelog
+* Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
+* Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Fri Jan 17 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.10.0-1
 - Updated to version 0.10.0.
 
