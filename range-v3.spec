@@ -3,8 +3,8 @@
 
 Name: range-v3
 Summary: Experimental range library for C++11/14/17
-Version: 0.10.0
-Release: 4%{?dist}
+Version: 0.11.0
+Release: 1%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
@@ -33,10 +33,10 @@ sed -i '/-Werror/d' cmake/ranges_flags.cmake
 %build
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DRANGE_V3_TESTS=OFF \
-    -DRANGE_V3_DOCS=OFF \
-    -DRANGE_V3_EXAMPLES=OFF \
-    -DRANGES_MODULES=OFF
+    -DRANGE_V3_TESTS:BOOL=OFF \
+    -DRANGE_V3_DOCS:BOOL=OFF \
+    -DRANGE_V3_EXAMPLES:BOOL=OFF \
+    -DRANGES_MODULES:BOOL=OFF
 %cmake_build
 
 %install
@@ -53,6 +53,9 @@ rm -f %{buildroot}%{_includedir}/module.modulemap
 %{_libdir}/cmake/%{name}
 
 %changelog
+* Thu Aug 13 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0.11.0-1
+- Updated to version 0.11.0.
+
 * Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-4
 - Second attempt - Rebuilt for
   https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
