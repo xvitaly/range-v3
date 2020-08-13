@@ -8,7 +8,10 @@ Release: 1%{?dist}
 
 License: Boost
 URL: https://github.com/ericniebler/%{name}
-Source0: %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+
+# https://github.com/ericniebler/range-v3/pull/1549
+Patch100: %{name}-fix-installation.patch
 
 BuildRequires: ninja-build
 BuildRequires: gcc-c++
@@ -26,9 +29,8 @@ Provides: %{name}-static = %{version}-%{release}
 %{summary}.
 
 %prep
-%autosetup
-sed -i 's@lib/@%{_lib}/@g' CMakeLists.txt
-sed -i '/-Werror/d' cmake/ranges_flags.cmake
+%autosetup -p1
+sed -e '/-Werror/d' -i cmake/ranges_flags.cmake
 
 %build
 %cmake -G Ninja \
